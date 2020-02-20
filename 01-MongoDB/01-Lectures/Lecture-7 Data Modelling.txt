@@ -1,0 +1,158 @@
+db.musicians.insert(
+...     {
+...         _id : 9,
+...         name : "Geddy Lee",
+...         instrument : [ "Bass", "Vocals", "Keyboards" ],
+...         artist_id : 4
+...     }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.musicians.insert(
+...     {
+...         _id : 10,
+...         name : "Alex Lifeson",
+...         instrument : [ "Guitar", "Backing Vocals" ],
+...         artist_id : 4
+...     }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.musicians.insert(
+...     {
+...         _id : 11,
+...         name : "Neil Peart",
+...         instrument : "Drums",
+...         artist_id : 4
+...     }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.musicians.find().pretty()
+{
+        "_id" : 9,
+        "name" : "Geddy Lee",
+        "instrument" : [
+                "Bass",
+                "Vocals",
+                "Keyboards"
+        ],
+        "artist_id" : 4
+}
+{
+        "_id" : 10,
+        "name" : "Alex Lifeson",
+        "instrument" : [
+                "Guitar",
+                "Backing Vocals"
+        ],
+        "artist_id" : 4
+}
+{
+        "_id" : 11,
+        "name" : "Neil Peart",
+        "instrument" : "Drums",
+        "artist_id" : 4
+}
+> db.artists.find().pretty()
+{ "_id" : 4, "artistname" : "Rush" }
+>
+>
+> db.artists.aggregate([
+...     {
+...       $lookup:
+...         {
+...           from: "musicians",
+...           localField: "_id",
+...           foreignField: "artist_id",
+...           as: "band_members"
+...         }
+...    },
+...    { $match : { artistname : "Rush" } }
+... ]).pretty()
+{
+        "_id" : 4,
+        "artistname" : "Rush",
+        "band_members" : [
+                {
+                        "_id" : 9,
+                        "name" : "Geddy Lee",
+                        "instrument" : [
+                                "Bass",
+                                "Vocals",
+                                "Keyboards"
+                        ],
+                        "artist_id" : 4
+                },
+                {
+                        "_id" : 10,
+                        "name" : "Alex Lifeson",
+                        "instrument" : [
+                                "Guitar",
+                                "Backing Vocals"
+                        ],
+                        "artist_id" : 4
+                },
+                {
+                        "_id" : 11,
+                        "name" : "Neil Peart",
+                        "instrument" : "Drums",
+                        "artist_id" : 4
+                }
+        ]
+}
+>
+> use studentdb
+switched to db studentdb
+>
+> db.studata.find()[0]
+{
+        "_id" : ObjectId("5e25dcc6ae8bf856b03db84e"),
+        "student_name" : "sachin",
+        "student_id" : 2002,
+        "student_age" : 22
+}
+> db.studata.find()
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db84e"), "student_name" : "sachin", "student_id" : 2002, "student_age" : 22 }
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db84f"), "student_name" : "kishore", "student_id" : 2003, "student_age" : 22 }
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db850"), "student_name" : "mukam", "student_id" : 2004, "student_age" : 23 }
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db851"), "student_name" : "navdeep", "student_id" : 2005, "student_age" : 21 }
+> db.studata.findOne()
+{
+        "_id" : ObjectId("5e25dcc6ae8bf856b03db84e"),
+        "student_name" : "sachin",
+        "student_id" : 2002,
+        "student_age" : 22
+}
+> db.studata.find()[1]
+{
+        "_id" : ObjectId("5e25dcc6ae8bf856b03db84f"),
+        "student_name" : "kishore",
+        "student_id" : 2003,
+        "student_age" : 22
+}
+> db.studata.find()[6]
+> db.studata.find().limit(2)
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db84e"), "student_name" : "sachin", "student_id" : 2002, "student_age" : 22 }
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db84f"), "student_name" : "kishore", "student_id" : 2003, "student_age" : 22 }
+> db.studata.find().limit(3).skip(1)
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db84f"), "student_name" : "kishore", "student_id" : 2003, "student_age" : 22 }
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db850"), "student_name" : "mukam", "student_id" : 2004, "student_age" : 23 }
+{ "_id" : ObjectId("5e25dcc6ae8bf856b03db851"), "student_name" : "navdeep", "student_id" : 2005, "student_age" : 21 }
+>
+> db.records.find().pretty()
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c72"), "a" : 1, "b" : 2, "c" : 3 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c73"), "a" : 1, "c" : 2 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c74"), "b" : 2, "c" : 3 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c75"), "a" : 1 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c76"), "c" : 3 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c77"), "b" : 2 }
+>
+>
+
+> db.records.find({a:{$exists:true}})
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c72"), "a" : 1, "b" : 2, "c" : 3 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c73"), "a" : 1, "c" : 2 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c75"), "a" : 1 }
+> db.records.find({a:{$exists:false}})
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c74"), "b" : 2, "c" : 3 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c76"), "c" : 3 }
+{ "_id" : ObjectId("5e1be05cae67d7af436c1c77"), "b" : 2 }
+>

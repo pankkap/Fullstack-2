@@ -1,0 +1,135 @@
+ CRUD Operations 1) create  2) Read   3) Update  4) Delete 
+ Session on 20 Jan 2020
+
+
+2020-01-20T10:31:46.424+0530 E QUERY    [js] SyntaxError: missing ; before statement @(shell):1:5
+>
+>
+> use studentdb
+switched to db studentdb
+>
+>
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+> db.studata.deleteOne({class:"3A"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+>
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+> db.studata.insert({name:"sachin", age:22, class:"3A"})
+WriteResult({ "nInserted" : 1 })
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e2534f26d1c916221f9aa53"),
+        "name" : "sachin",
+        "age" : 22,
+        "class" : "3A"
+}
+> db.studata.deleteMany({age:22})
+{ "acknowledged" : true, "deletedCount" : 2 }
+>
+> db.studata.remove({})
+WriteResult({ "nRemoved" : 3 })
+>
+>
+> db.studata.find().pretty()
+> db.studata.remove({},1)
+WriteResult({ "nRemoved" : 0 })
+
+
+
+	MONGODB BACKUP and RESTORE (DATABASE ADMINISTRATION)
+
+C:\WINDOWS\system32>cd\
+
+C:\>cd mongodb
+
+C:\mongodb>cd bin
+
+C:\mongodb\bin>mongodump
+
+C:\mongodb\bin>mongorestore
+
+C:\mongodb\bin>mongodump --db studentdb
+
+C:\mongodb\bin>mongorestore --db studentdb dump/studentdb
+
+C:\mongodb\bin>mongodump --db studentdb --collection address
+
+C:\mongodb\bin>mongorestore --db studentdb --collection address dump/studentdb/address.bson

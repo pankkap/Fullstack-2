@@ -1,0 +1,205 @@
+> show dbs
+admin    0.000GB
+config   0.000GB
+local    0.000GB
+student  0.000GB
+>
+>
+> use pankajdb
+switched to db pankajdb
+>
+>
+> show dbs
+admin    0.000GB
+config   0.000GB
+local    0.000GB
+student  0.000GB
+>
+> db.createCollection("mycol")
+{ "ok" : 1 }
+>
+> show dbs
+admin     0.000GB
+config    0.000GB
+local     0.000GB
+pankajdb  0.000GB
+student   0.000GB
+>
+>
+> db
+pankajdb
+>
+> use student
+switched to db student
+>
+> db
+student
+>
+> db.dropDatabase()
+{ "dropped" : "student", "ok" : 1 }
+>
+> show dbs
+admin     0.000GB
+config    0.000GB
+local     0.000GB
+pankajdb  0.000GB
+>
+>
+> use pankajdb
+switched to db pankajdb
+>
+> show collections
+mycol
+>
+> db.mycol.drop()
+true
+>
+> db
+pankajdb
+>
+> show collections
+>
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+>
+>
+> use studentdb
+switched to db studentdb
+>
+> db.studata.insert({ "name":  })
+2020-01-09T16:07:18.018+0530 E  QUERY    [js] uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:29
+> db.studata.insert({ "name":"sachin", "age":25, "class":"3A"  })
+WriteResult({ "nInserted" : 1 })
+>
+> show dbs
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+studentdb  0.000GB
+>
+>
+> show collections
+studata
+> db.studata.insertMany([  { "name":"mukesh", "age":24, "class":"3B" }, { "name":"ravi", "age": 21,"class":"3B"}    ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("5e170333d0faa4af30918adf"),
+                ObjectId("5e170333d0faa4af30918ae0")
+        ]
+}
+> db.studata.find()
+{ "_id" : ObjectId("5e170296d0faa4af30918ade"), "name" : "sachin", "age" : 25, "class" : "3A" }
+{ "_id" : ObjectId("5e170333d0faa4af30918adf"), "name" : "mukesh", "age" : 24, "class" : "3B" }
+{ "_id" : ObjectId("5e170333d0faa4af30918ae0"), "name" : "ravi", "age" : 21, "class" : "3B" }
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3B"
+}
+> db.studata.insert({ "name":"sachin1", "age":25, "class":"3A"  })
+WriteResult({ "nInserted" : 1 })
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "sachin1",
+        "age" : 25,
+        "class" : "3A"
+}
+> db.datatye.insertMany([{ dt1:12 }, { dt2: 2.13}, { dt3:"pankaj"}, {dt4:true}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("5e17046cd0faa4af30918ae2"),
+                ObjectId("5e17046cd0faa4af30918ae3"),
+                ObjectId("5e17046cd0faa4af30918ae4"),
+                ObjectId("5e17046cd0faa4af30918ae5")
+        ]
+}
+> db.datatype.find().pretty()
+> db.datatye.find().pretty()
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae2"), "dt1" : 12 }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae3"), "dt2" : 2.13 }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae4"), "dt3" : "pankaj" }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae5"), "dt4" : true }
+>
+> var myArray = [ "Mon","Tue", "Wed"]
+> db.datatye.insert({ dt5:myArray })
+WriteResult({ "nInserted" : 1 })
+> db.datatye.find().pretty()
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae2"), "dt1" : 12 }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae3"), "dt2" : 2.13 }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae4"), "dt3" : "pankaj" }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae5"), "dt4" : true }
+{
+        "_id" : ObjectId("5e170522d0faa4af30918ae6"),
+        "dt5" : [
+                "Mon",
+                "Tue",
+                "Wed"
+        ]
+}
+>
+> var myObject = { subject:"Fullstack2", credit: 4, subjectCode:"BCSE0254"  }
+>
+> db.datatye.insertOne({ dt6: myObject })
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5e1705ddd0faa4af30918ae7")
+}
+> db.datatye.find().pretty()
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae2"), "dt1" : 12 }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae3"), "dt2" : 2.13 }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae4"), "dt3" : "pankaj" }
+{ "_id" : ObjectId("5e17046cd0faa4af30918ae5"), "dt4" : true }
+{
+        "_id" : ObjectId("5e170522d0faa4af30918ae6"),
+        "dt5" : [
+                "Mon",
+                "Tue",
+                "Wed"
+        ]
+}
+{
+        "_id" : ObjectId("5e1705ddd0faa4af30918ae7"),
+        "dt6" : {
+                "subject" : "Fullstack2",
+                "credit" : 4,
+                "subjectCode" : "BCSE0254"
+        }
+}

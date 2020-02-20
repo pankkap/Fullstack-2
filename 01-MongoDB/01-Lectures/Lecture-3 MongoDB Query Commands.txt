@@ -1,0 +1,66 @@
+db.studata.find()		
+--Display all Records
+
+db.studata.find({})		
+--Display all Records because no query is mentioned
+
+db.studata.find()[0]		
+--Display First Record Only
+
+db.studata.findOne()		
+--Display First Record Only
+
+db.studata.find({ name:"sachin"})	
+--Query based on filter (field:value)
+
+db.studata.find({ age: {$gt:20} }).pretty()	
+--Query based on operator 
+
+db.studata.find({ age: {$lt:25} }).pretty()
+
+db.studata.find({ age: {$ne:25} }).pretty()
+
+db.studata.find({ age: {$gt:21, $lt:25} }).pretty()		
+--Query based on two operators 
+
+db.studata.find({age: {$in: [21,25] }}).pretty()		
+--In Operator
+
+db.studata.find({ name:"sachin", age:25}).pretty()		
+--AND based condition
+
+db.studata.find({ class:"3A", age:{$gt:21} }).pretty()		
+
+db.studata.find({$and:[{ name:"sachin"},{ age:25 }]}).pretty()	
+--AND Operator
+
+db.studata.find({$or:[{ name:"sachin"},{ age:25 }]}).pretty()	
+--OR Operator
+
+db.studata.find({$nor:[{ name:"sachin"},{ age:25 }]}).pretty()
+
+db.studata.find({class:"3A",$or:[{ name:"sachin"},{ age:25 }]}).pretty()   
+--AND + OR Condition
+
+db.studata.find({},{_id:0,name:1})		
+--PROJECTIONS 0 means not project
+
+db.studata.find({class:"3A"},{_id:0,name:1})	
+--PROJECTIONS 1 means project this only	
+
+db.studata.find({},{_id:0})
+
+
+db.studata.find({},{_id:0}).limit(2)		
+--Limit the no. of documents display
+
+db.studata.find({},{_id:0}).limit(2).skip(1)	
+--Skipping initial records
+
+db.records.find({a:{$exists:true}})		
+--Existance of a field in a document
+
+db.records.find({a:{$exists:false}})		
+--Non-Existance of a field in a document
+
+

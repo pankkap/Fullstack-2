@@ -1,0 +1,18 @@
+1. Download MongoDB from the Below Link
+
+https://www.mongodb.com/download-center/community
+
+2. Install the MongoDb using following Link
+
+https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514
+
+3. Introduction to MongoDB
+
+https://www.w3schools.in/mongodb/overview/
+https://docs.mongodb.com/manual/introduction/
+
+and PPT attached
+
+4. Refer File MongoDb Session-1 doc for Commands for Lecture-2
+
+

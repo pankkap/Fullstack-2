@@ -1,0 +1,343 @@
+ Update commands [ 2020-01-14 10:35:40 ]
+ 
+> db.studata.update({name:"sachin"},{$set:{class:"3B"} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3A"
+}
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3B"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3A"
+}
+> db.studata.updateMany({},{$set:{class:"3C"}    })
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+> db.studata.update({age:25},{$set:{class:"3A"}},{multi:true})
+WriteResult({ "nMatched" : 2, "nUpserted" : 0, "nModified" : 2 })
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+> db.studata.update({"name":"sachin"},{$set: { marks:70} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3A",
+        "marks" : 70
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+> db.studata.update({"name":"sachin"},{$unset: { marks:50} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studata.find().pretty()
+{
+        "_id" : ObjectId("5e170296d0faa4af30918ade"),
+        "name" : "sachin",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918adf"),
+        "name" : "mukesh",
+        "age" : 24,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e170333d0faa4af30918ae0"),
+        "name" : "ravi",
+        "age" : 21,
+        "class" : "3C"
+}
+{
+        "_id" : ObjectId("5e1703f5d0faa4af30918ae1"),
+        "name" : "saurabh",
+        "age" : 25,
+        "class" : "3A"
+}
+{
+        "_id" : ObjectId("5e1bdc46ae67d7af436c1c71"),
+        "name" : "manish",
+        "age" : 22,
+        "class" : "3C"
+}
+> db.table1.find()
+{ "_id" : ObjectId("5e1d510c51b37731e49110ec"), "student_id" : "STU002", "sem" : "sem1", "english" : "A", "maths" : "A+", "science" : "A" }
+{ "_id" : ObjectId("5e1d510c51b37731e49110ed"), "student_id" : "STU001", "sem" : "sem1", "english" : "A+", "maths" : "A+", "science" : "A" }
+{ "_id" : ObjectId("5e1d510c51b37731e49110ee"), "student_id" : "STU003", "sem" : "sem1", "english" : "A+", "maths" : "A", "science" : "A+" }
+> db.table1.find().pretty()
+{
+        "_id" : ObjectId("5e1d510c51b37731e49110ec"),
+        "student_id" : "STU002",
+        "sem" : "sem1",
+        "english" : "A",
+        "maths" : "A+",
+        "science" : "A"
+}
+{
+        "_id" : ObjectId("5e1d510c51b37731e49110ed"),
+        "student_id" : "STU001",
+        "sem" : "sem1",
+        "english" : "A+",
+        "maths" : "A+",
+        "science" : "A"
+}
+{
+        "_id" : ObjectId("5e1d510c51b37731e49110ee"),
+        "student_id" : "STU003",
+        "sem" : "sem1",
+        "english" : "A+",
+        "maths" : "A",
+        "science" : "A+"
+}
+> db.students.update({_id:1},{$rename: {"nmae":"name"} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+        "_id" : 1,
+        "alias" : [
+                "The American Cincinnatus",
+                "The American Fabius"
+        ],
+        "mobile" : "555-555-5555",
+        "newField" : 1,
+        "name" : {
+                "last" : "washington",
+                "fname" : "george"
+        }
+}
+{
+        "_id" : 2,
+        "alias" : [
+                "My dearest friend"
+        ],
+        "mobile" : "222-222-2222",
+        "name" : {
+                "last" : "adams",
+                "fname" : "abigail"
+        }
+}
+{
+        "_id" : 3,
+        "alias" : [
+                "Amazing grace"
+        ],
+        "mobile" : "111-111-1111",
+        "name" : {
+                "last" : "hopper",
+                "fname" : "grace"
+        }
+}
+> db.students.update({_id:1},{$rename: {"name.last":"name.lname"} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+        "_id" : 1,
+        "alias" : [
+                "The American Cincinnatus",
+                "The American Fabius"
+        ],
+        "mobile" : "555-555-5555",
+        "newField" : 1,
+        "name" : {
+                "fname" : "george",
+                "lname" : "washington"
+        }
+}
+{
+        "_id" : 2,
+        "alias" : [
+                "My dearest friend"
+        ],
+        "mobile" : "222-222-2222",
+        "name" : {
+                "last" : "adams",
+                "fname" : "abigail"
+        }
+}
+{
+        "_id" : 3,
+        "alias" : [
+                "Amazing grace"
+        ],
+        "mobile" : "111-111-1111",
+        "name" : {
+                "last" : "hopper",
+                "fname" : "grace"
+        }
+}
+> db.students.updateMany({},{$rename: {"name.last":"name.lname"} })
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+        "_id" : 1,
+        "alias" : [
+                "The American Cincinnatus",
+                "The American Fabius"
+        ],
+        "mobile" : "555-555-5555",
+        "newField" : 1,
+        "name" : {
+                "fname" : "george",
+                "lname" : "washington"
+        }
+}
+{
+        "_id" : 2,
+        "alias" : [
+                "My dearest friend"
+        ],
+        "mobile" : "222-222-2222",
+        "name" : {
+                "fname" : "abigail",
+                "lname" : "adams"
+        }
+}
+{
+        "_id" : 3,
+        "alias" : [
+                "Amazing grace"
+        ],
+        "mobile" : "111-111-1111",
+        "name" : {
+                "fname" : "grace",
+                "lname" : "hopper"
+        }
+}
+>
