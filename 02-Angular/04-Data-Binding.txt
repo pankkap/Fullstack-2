@@ -1,0 +1,51 @@
+-----Cricketer.component.html----------
+-------- All 4 Data Binding examples ------
+
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <ul class="list-group">
+      <li class="list-group-item">
+        {{ player }}
+      </li>
+      <li class="list-group-item">
+        <input type="text" [(ngModel)]="inputPlayer" />
+      </li>
+
+      <li class="list-group-item">
+        <button
+          (click)="changePlayer()"
+          class="btn btn-danger"
+          [disabled]="btndis"
+        >
+          My Button
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+--------------------- Cricketer.component.ts ---------------
+
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-cricketer",
+  templateUrl: "./cricketer.component.html",
+  styleUrls: ["./cricketer.component.css"]
+})
+export class CricketerComponent implements OnInit {
+  player: string = "sachin";
+  changePlayer() {
+    this.player = this.inputPlayer;
+    this.inputPlayer = null;  
+  }
+  btndis: boolean = false;
+  inputPlayer = null;
+
+  constructor() {}
+
+  ngOnInit() {}
+}

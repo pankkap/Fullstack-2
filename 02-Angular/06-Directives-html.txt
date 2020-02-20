@@ -1,0 +1,62 @@
+---------Angular Directives (NgFor and NgIf)--------
+---------------HTML-----------------------
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let player of players">
+        {{ player }}
+      </li>
+      <li class="list-group-item">
+        <button class="btn btn-info" (click)="AddMore()">Add More</button>
+      </li>
+      <!-- <li class="list-group-item">{{ inputPlayer }}</li> -->
+      <li class="list-group-item" *ngIf="Adding">
+        <input [(ngModel)]="inputPlayer" 
+	[ngClass]="{ 'text-danger': player === 'kohli' }"
+        [ngStyle]="{ 'background-color': player === 'kohli' ? 'green' : 'red' }"
+/>
+        <br /><br />
+        <button
+          class="btn btn-success"
+          [disabled]="!inputPlayer"
+          (click)="AddPlayer()"
+        >
+          Add Player
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+---------Angular Directives ---------------
+---------------TS-----------------------
+
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-cricketer",
+  templateUrl: "./cricketer.component.html",
+  styleUrls: ["./cricketer.component.css"]
+})
+export class CricketerComponent implements OnInit {
+  players = ["sachin", "doni", "kohli", "rohit", "rahul"]; // Interpolation
+  inputPlayer = null;
+  disButton = false; // Property Binding
+  Adding = false;
+  AddPlayer() {
+    // Event Binding
+    this.players.push(this.inputPlayer);
+    this.inputPlayer = null;
+    this.Adding = false;
+  }
+
+  AddMore() {
+    this.Adding = !this.Adding;
+  }
+
+  constructor() {}
+
+  ngOnInit() {}
+}
