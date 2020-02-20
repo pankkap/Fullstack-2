@@ -1,0 +1,18 @@
+Installation Steps to create first Angular Application
+
+1. check nodejs is installed or not
+>node -v
+
+2. npm check npm is installed or not
+>npm -v
+
+3. angular CLI (Angular Command Line Interface)
+> npm install @angular/cli -g
+> ng -v 
+
+
+4. Create Angular Project at specified directory
+>ng new applicationName
+
+5. Start angular Project
+>ng serve -o

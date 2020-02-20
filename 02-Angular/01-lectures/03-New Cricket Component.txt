@@ -1,0 +1,42 @@
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-cricketer",
+  templateUrl: "./cricketer.component.html",
+  styleUrls: ["./cricketer.component.css"]
+})
+export class CricketerComponent implements OnInit {
+  player = "sachin";
+  inputPlayer = null;
+  btnDisable = false;
+  ChangePlayer() {
+//    this.player = "Kohli";	
+    this.player = this.inputPlayer;
+  }
+
+  constructor() {}
+
+  ngOnInit() {}
+}
+
+<br />
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <ul class="list-group">
+      <li class="list-group-item">{{ player }}</li>
+      <li class="list-group-item">
+        <input type="text" class="form-control" [(ngModel)]="inputPlayer" />
+      </li>
+      <!-- <li class="list-group-item">{{ inputPlayer }}</li> -->
+      <li class="list-group-item">
+        <button
+          class="btn btn-primary"
+          [disabled]="btnDisable"
+          (click)="ChangePlayer()"
+        >
+          Change Player
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

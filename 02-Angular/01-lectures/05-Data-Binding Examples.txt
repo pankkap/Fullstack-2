@@ -1,0 +1,49 @@
+---Data Binding Examples ------
+------------HTML---------------
+
+<!-- {{ "My Fav Player: " + player }}; -->
+
+<!-- {{ 5 + 10 }} -->
+
+{{ "My FullName is: " + fullName() }}
+<br />
+<img src="{{ imageAdd }}" alt="" />
+
+<button class="btn btn-danger" [disabled]="btnDis" (click)="Btnclick()">
+  My Button
+</button>
+
+
+---Data Binding Examples ------
+------------TS File---------------
+
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-cricketer",
+  templateUrl: "./cricketer.component.html",
+  styleUrls: ["./cricketer.component.css"]
+})
+export class CricketerComponent implements OnInit {
+  player: string = "K L Rahul";
+  firstName: string = "Pankaj";
+  lastName: string = "kapoor";
+
+  fullName(): string {
+    return this.firstName + " " + this.lastName;
+  }
+
+  imageAdd: string = "https://www.gla.ac.in/images/gla-university-logo.jpg";
+
+  btnDis: boolean = false;
+
+  imgnewAdd =
+    "https://lh3.googleusercontent.com/vvaYqFSWxAqNQdRVh69HDWS9Ga1YHF_TSVCj-sc0iSwpA9GDzfOvO5bcJgvChic9jzD9pX7uZw=w440-h280-e365";
+
+  Btnclick() {
+    this.imageAdd = this.imgnewAdd;
+  }
+  constructor() {}
+
+  ngOnInit() {}
+}
