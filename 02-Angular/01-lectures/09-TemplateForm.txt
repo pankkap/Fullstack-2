@@ -1,0 +1,108 @@
+1. Create a Templete Form Component
+	
+>	ng g c TemplateForm --spec false
+
+2. import FormsModule in app.module.ts file
+
+>	import { FormsModule } from '@angular/forms';
+
+3. Create Template with following code
+
+-----------------------TemplateFormComponent.html--------------------
+
+<div class="container">
+  <h3 class="text-center text-danger">Template Form</h3>
+  <br />
+  <div class="row">
+    <div class="col-xs-12">
+      <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <label for="courseName">Course Name</label>
+            <input
+              type="text"
+              id="courseName"
+              class="form-control"
+              name="courseName"
+              ngModel
+              required
+            />
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="courseDesc">Course Description</label>
+            <input
+              type="text"
+              id="courseDesc"
+              class="form-control"
+              name="courseDesc"
+              ngModel
+            />
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="courseAmount">Course Amount</label>
+            <input
+              type="number"
+              id="courseAmount"
+              class="form-control"
+              name="courseAmount"
+              ngModel
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success m-3" type="submit">Add</button>
+
+            <button class="btn btn-primary" type="button" (click)="onClear()">
+              Clear
+            </button>
+          </div>
+        </div>
+      </form>
+      {{ f.value | json }}
+    </div>
+  </div>
+</div>
+
+
+4. import nGForm module in TemplateFormComponent.ts file 
+
+>	import { NgForm } from '@angular/forms';
+
+5. Display the form content on console or as a JSON object in the Template itself
+
+>	      {{ myform.value | json }}
+
+
+----------------------- TemplateFormComponent.ts --------------------
+
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-template-form',
+  templateUrl: './template-form.component.html',
+  styleUrls: ['./template-form.component.css']
+})
+export class TemplateFormComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit() {}
+  courseForm: NgForm;
+
+  onSubmit(form: NgForm) {
+    console.log('Course Name is : ' + form.value.courseName);
+    console.log('Course Desc is : ' + form.value.courseDesc);
+    console.log('Course Amount is : ' + form.value.courseAmount);
+  }
+
+  onClear() {
+    this.courseForm.reset();
+  }
+
+  onDelete() {}
+}
+
+
+
+
