@@ -1,0 +1,100 @@
+Angular Routing/Navigation
+
+1. Import a Module called ---> RouterModule
+	-- Rauting Services
+	-- Routing Directives
+2. Import Routes for Configuring Links
+
+3. Create a constant of type Routes and create an Array
+
+4. Create Array objects with path and component properties
+
+5. configure RouterModule in Import array with forRoot(appRoutes) and pass    constant -->appRoutes
+6. Now create a Template for navigation bar
+
+7. use RouterLink directive instead of Href for creating navigation links
+
+8. Finally add Routeroutlet in the template that will display your component  
+
+
+------------------------------------aap.module.ts-----------------------
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'list', component: StudentListComponent },
+  { path: 'create', component: CreateStudentComponent },
+  { path: 'like', component: LikeComponent },
+  { path: 'cricket', component: CricketerComponent },
+  { path: '', component: StudentListComponent },
+   
+];
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CricketerComponent } from './cricketer/cricketer.component';
+import { LikeComponent } from './like/like.component';
+import { TDFComponent } from './tdf/tdf.component';
+
+import { StudentListComponent } from './student/student-list.component';
+import { TemplateFormComponent } from './template-form/template-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { CreateStudentComponent } from './student/create-student.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CricketerComponent,
+    LikeComponent,
+    TDFComponent,
+    StudentListComponent,
+    TemplateFormComponent,
+    ReactiveFormComponent,
+    CreateStudentComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+
+
+
+
+------------------------------------app.component.html--------------------------
+
+
+<div class="container">
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLink="list">List-Students</a>
+      </li>
+      <li>
+        <a routerLink="create">Create Student</a>
+      </li>
+      <li>
+        <a routerLink="like">Like Component</a>
+      </li>
+      <li>
+        <a routerLink="cricket">Cricket Component</a>
+      </li>
+      
+    </ul>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
+
